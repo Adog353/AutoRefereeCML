@@ -15,53 +15,7 @@ import java.util.logging.Level;
 
 public class AutoRefereeCML extends JavaPlugin
 {
-	public static String API_SERVER = null;
-
-	private static AutoRefereeCML instance = null;
-
-	public String serverkey;
-
-	public static AutoRefereeCML getInstance()
-	{ return instance; }
-
-	@Override
-	public void onEnable()
-	{
-		// set singleton instance
-		AutoRefereeCML.instance = this;
-
-		this.serverkey = this.getConfig().getString("server-key", "");
-
-		AutoReferee ar = AutoReferee.getInstance();
-
-		// register commands
-		ar.getCommandManager().registerCommands(new LeagueCoreCommands(ar), ar);
-		ar.getCommandManager().registerCommands(new LeaguePluginCommands(this), this);
-
-		// register events
-		Bukkit.getPluginManager().registerEvents(new MatchListener(ar), ar);
-
-		// get the auth server url from the config (default: localhost)
-		AutoRefereeCML.API_SERVER = this.getConfig().getString("auth-server", "http://localhost/");
-
-		// check connection to the auth server
-		Map<String, String> ackParams = Maps.newHashMap();
-		ackParams.put("serverkey", this.getConfig().getString("server-key", ""));
-
-		try
-		{
-			String response = QueryUtil.syncGetQuery(AutoRefereeCML.API_SERVER + "/ack.php",
-				QueryUtil.prepareParams(ackParams));
-
-			if (response != null && !Boolean.parseBoolean(response))
-				AutoReferee.log(this.getName() + " could not connect to auth server.", Level.SEVERE);
-			else AutoReferee.log(this.getName() + " connected to auth server.");
-		}
-		catch (IOException e) { e.printStackTrace(); }
-	}
-
-	@Override
-	public void onDisable()
+public static. fix authorblues; semicolon 
 	{
 	}
 }
